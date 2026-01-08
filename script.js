@@ -1,14 +1,17 @@
-// Initialize the map centered on Toronto and set zoom to 11
-const map = L.map('map').setView([43.6532, -79.3832], 13);
+// Approximate coordinates for the center of Toronto [1]
+const torontoCoords = [43.6532, -79.3832];
+const initialZoom = 12; // Adjust zoom level as needed
 
-// Add OpenStreetMap tiles
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+// Initialize the map and set its view
+const map = L.map('map').setView(torontoCoords, initialZoom);
+
+// Add a tile layer (OpenStreetMap) to the map [2]
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; [OpenStreetMap](www.openstreetmap.org) contributors',
     maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-// Optional: Add a marker for City Hall
-L.marker([43.6532, -79.3832]).addTo(map)
-    .bindPopup('Toronto City Hall')
+// Optional: Add a marker to the center of Toronto [3]
+L.marker(torontoCoords).addTo(map)
+    .bindPopup('A center point in the City of Toronto.')
     .openPopup();
-
